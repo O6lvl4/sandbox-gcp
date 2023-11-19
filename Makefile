@@ -1,8 +1,8 @@
 # Terraform Makefile
 
-.PHONY: apply plan destroy fmt validate
+.PHONY: init apply plan destroy fmt validate outdated-modules update-modules
 
-# Plan Terraform changes
+# Initialize Terraform
 init:
 	terraform init
 
@@ -25,3 +25,12 @@ fmt:
 # Validate Terraform configuration
 validate:
 	terraform validate
+
+# Refresh module status
+outdated-modules:
+	terraform get -update
+
+# Update modules and apply
+update-modules:
+	terraform get -update
+	terraform apply
